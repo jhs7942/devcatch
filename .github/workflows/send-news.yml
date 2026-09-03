@@ -1,0 +1,34 @@
+name: 개발 뉴스 알림
+
+on:
+    schedule:
+        - cron: '17 0,9 * * 1-5'
+    workflow_dispatch:
+
+concurrency:
+    group: devcatch-send-news
+    cancel-in-progress: false
+
+jobs:
+    send-news:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 24
+                  cache: npm
+
+            - run: npm ci
+
+            - run: npm run run
+              env:
+                  WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+                  NCP_OBJECT_STORAGE_ENDPOINT: ${{ secrets.NCP_OBJECT_STORAGE_ENDPOINT }}
+                  NCP_OBJECT_STORAGE_REGION: ${{ secrets.NCP_OBJECT_STORAGE_REGION }}
+                  NCP_ACCESS_KEY: ${{ secrets.NCP_ACCESS_KEY }}
+                  NCP_SECRET_KEY: ${{ secrets.NCP_SECRET_KEY }}
+                  NCP_BUCKET_NAME: ${{ secrets.NCP_BUCKET_NAME }}
+                  OBJECT_STORAGE_PREFIX: ${{ secrets.OBJECT_STORAGE_PREFIX }}

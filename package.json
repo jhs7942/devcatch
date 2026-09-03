@@ -1,22 +1,25 @@
 {
+  "type": "module",
   "scripts": {
-    "run": "tsx src/index.ts"
+    "run": "tsx src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1125.0",
-    "@eslint/js": "^10.0.1",
     "dotenv": "^17.4.2",
-    "globals": "^17.12.0",
-    "node-cron": "^4.6.0",
     "rss-parser": "^3.13.0",
-    "typescript-eslint": "^8.69.0",
     "zod": "^4.5.4"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/node": "^24.13.3",
+    "@types/xml2js": "^0.4.14",
     "eslint": "^10.9.1",
+    "globals": "^17.12.0",
     "prettier": "3.9.6",
     "tsx": "^4.23.13",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.69.0"
   }
 }
