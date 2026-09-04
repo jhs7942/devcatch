@@ -7,6 +7,13 @@ import { feedSources } from './rss.js'
 const environmentSchema = z.object({
     WEBHOOK_URL: z.string().url('WEBHOOK_URL은 올바른 URL이어야 합니다.'),
 
+    GEMINI_API_KEY: z.string().trim().min(1, 'GEMINI_API_KEY가 필요합니다.'),
+    GEMINI_EMBEDDING_MODEL: z.literal('gemini-embedding-001').default('gemini-embedding-001'),
+    EMBEDDING_CACHE_PATH: z.string().min(1).default('./data/embeddings.json'),
+    EMBEDDING_TIMEOUT_MS: z.coerce.number().int().min(1000).default(15000),
+    MIN_SIMILARITY: z.coerce.number().min(0).max(1).default(0.55),
+    MAX_EMBEDDING_ARTICLES: z.coerce.number().int().min(1).max(500).default(100),
+
     HISTORY_FILE_PATH: z.string().min(1).default('./data/sent-articles.json'),
 
     MAX_ARTICLES: z.coerce.number().int().min(1).max(20).default(5),
@@ -36,7 +43,17 @@ export const config = {
         filePath: environment.HISTORY_FILE_PATH,
     },
 
+    embedding: {
+        apiKey: environment.GEMINI_API_KEY,
+        model: environment.GEMINI_EMBEDDING_MODEL,
+        dimensions: 768,
+        cachePath: environment.EMBEDDING_CACHE_PATH,
+        timeoutMs: environment.EMBEDDING_TIMEOUT_MS,
+    },
+
     recommendation: {
+        minSimilarity: environment.MIN_SIMILARITY,
+        maxEmbeddingArticles: environment.MAX_EMBEDDING_ARTICLES,
         maxArticles: environment.MAX_ARTICLES,
         maxArticlesPerSource: environment.MAX_ARTICLES_PER_SOURCE,
         articleMaxAgeDays: environment.ARTICLE_MAX_AGE_DAYS,

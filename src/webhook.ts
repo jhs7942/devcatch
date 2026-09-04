@@ -66,7 +66,7 @@ function formatMessage(recommendations: readonly Recommendation[]): string {
             '',
             `**${article.title}**`,
             `- 출처: ${article.sourceName} · ${publishedAt}`,
-            `- 키워드: ${article.matchedKeywords.join(', ')}`,
+            `- 관련 관심사: ${article.matchedKeywords.join(', ')} · 유사도 ${article.similarity.toFixed(3)}`,
             article.url
         )
     }

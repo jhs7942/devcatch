@@ -1,6 +1,7 @@
 import type { AppConfig } from './config.js'
 import { collectArticles } from './collect.js'
-import { selectRecommendations } from './match.js'
+import { createEmbeddings } from './embedding.js'
+import { getEligibleArticles, selectRecommendations } from './match.js'
 import { excludeSentArticles, markArticlesAsSent } from './storage.js'
 import { sendWebhook } from './webhook.js'
 
@@ -15,7 +16,7 @@ export type NewsJobResult = {
  * 뉴스 알림 유스케이스를 실행합니다.
  * 수집, 중복 제거, 추천 선정, Webhook 전송, 발송 이력 기록을 순서대로 조합합니다.
  *
- * @param config - 실행에 필요한 RSS, 추천, Webhook, Object Storage 설정입니다.
+ * @param config - 실행에 필요한 RSS, 추천, Webhook, 임베딩, JSON 이력 설정입니다.
  * @returns 수집·추천·발송 개수와 수집에 실패한 출처 목록을 반환합니다.
  * @throws RSS 중복 확인, Webhook 전송, 발송 이력 기록 중 복구할 수 없는 오류가 발생하면 예외를 던집니다.
  */
@@ -32,11 +33,13 @@ export async function runNewsJob(
 
     const unsentArticles = await excludeSentArticles(articles, config.history)
 
-    const recommendations = selectRecommendations(unsentArticles, {
-        keywords: config.keywords,
+    const candidates = getEligibleArticles(unsentArticles,
+        config.recommendation.articleMaxAgeDays, config.recommendation.maxEmbeddingArticles)
+    const vectors = await createEmbeddings(candidates, config.keywords, config.embedding)
+    const recommendations = selectRecommendations(vectors.articles, vectors.interests, {
+        minSimilarity: config.recommendation.minSimilarity,
         maxArticles: config.recommendation.maxArticles,
         maxArticlesPerSource: config.recommendation.maxArticlesPerSource,
-        articleMaxAgeDays: config.recommendation.articleMaxAgeDays,
     })
 
     if (recommendations.length === 0) {
