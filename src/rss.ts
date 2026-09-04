@@ -1,8 +1,9 @@
 export type FeedSource = {
     name: string;
     url: string;
-  };
+};
 
+// RSS를 제공하는 기술 뉴스 출처를 이 목록에서 관리한다.
 export const feedSources: FeedSource[] = [
     {
       name: 'GitHub Blog',

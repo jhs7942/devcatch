@@ -1,3 +1,4 @@
+// 수집 단계부터 저장·추천 단계까지 공통으로 사용하는 내부 기사 형식이다.
 export type Article = {
     url: string
     title: string
@@ -6,6 +7,7 @@ export type Article = {
     publishedAt: Date | null
 }
 
+// 추천 결과에는 매칭 근거와 정렬에 사용한 점수를 추가한다.
 export type Recommendation = Article & {
     matchedKeywords: string[]
     score: number

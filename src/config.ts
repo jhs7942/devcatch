@@ -3,6 +3,7 @@ import { z } from 'zod'
 import keywords from './keywords.js'
 import { feedSources } from './rss.js'
 
+// GitHub Secrets 또는 로컬 .env 값을 프로그램 시작 시점에 검증한다.
 const environmentSchema = z.object({
     WEBHOOK_URL: z.string().url('WEBHOOK_URL은 올바른 URL이어야 합니다.'),
 
@@ -28,11 +29,13 @@ const environmentSchema = z.object({
 
 const environment = environmentSchema.parse(process.env)
 
+// 관심 키워드가 비어 있으면 어떤 기사도 추천할 수 없으므로 즉시 중단한다.
 if (keywords.length === 0) {
     throw new Error('keyword.ts에 관심 키워드를 하나 이상 설정해야 합니다.')
 }
 
 export const config = {
+    // 비교 시 대소문자 차이로 누락되지 않도록 키워드를 미리 정규화한다.
     keywords: keywords.map((keyword) => keyword.trim().toLowerCase()),
 
     feedSources,
