@@ -12,7 +12,7 @@ async function main(): Promise<void> {
 
     console.info(`[DevCatch] 뉴스 수집 시작: ${startedAt.toISOString()}`)
 
-    // index.ts는 환경 설정을 만들고 실행 작업에 전달하는 진입점 역할만 한다.
+    // index.js는 환경 설정을 만들고 실행 작업에 전달하는 진입점 역할만 한다.
     const result = await runNewsJob(config)
 
     console.info(

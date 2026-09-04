@@ -3,7 +3,7 @@ const tech = ['HTML', 'AI Agent']
 const languages = ['JavaScript', 'TypeScript']
 const frontEnd = ['React', 'Next.js']
 const backEnd: string[] = []
-const infra = ['Docker']
+const infra = ['Docker', 'kubernetes']
 
 const keywords = [...frontEnd, ...languages, ...tech, ...backEnd, ...infra]
 

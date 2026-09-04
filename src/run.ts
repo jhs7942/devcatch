@@ -28,6 +28,8 @@ export async function runNewsJob(
         config.rss.timeoutMs
     )
 
+    console.log(articles)
+
     const unsentArticles = await excludeSentArticles(articles, config.history)
 
     const recommendations = selectRecommendations(unsentArticles, {

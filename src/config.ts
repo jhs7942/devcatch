@@ -19,7 +19,7 @@ const environment = environmentSchema.parse(process.env)
 
 // 관심 키워드가 비어 있으면 어떤 기사도 추천할 수 없으므로 즉시 중단한다.
 if (keywords.length === 0) {
-    throw new Error('keyword.ts에 관심 키워드를 하나 이상 설정해야 합니다.')
+    throw new Error('keyword.js에 관심 키워드를 하나 이상 설정해야 합니다.')
 }
 
 export const config = {
