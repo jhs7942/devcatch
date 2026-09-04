@@ -28,7 +28,7 @@ export async function runNewsJob(
         config.rss.timeoutMs
     )
 
-    const unsentArticles = await excludeSentArticles(articles, config.objectStorage)
+    const unsentArticles = await excludeSentArticles(articles, config.history)
 
     const recommendations = selectRecommendations(unsentArticles, {
         keywords: config.keywords,
@@ -48,7 +48,7 @@ export async function runNewsJob(
 
     // 전송이 성공한 기사만 발송 이력으로 남겨 실패한 알림은 다음 실행에 재시도한다.
     await sendWebhook(recommendations, config.webhook)
-    await markArticlesAsSent(recommendations, config.objectStorage)
+    await markArticlesAsSent(recommendations, config.history)
 
     return {
         collectedCount: articles.length,

@@ -5,6 +5,9 @@ on:
         - cron: '17 0,9 * * 1-5'
     workflow_dispatch:
 
+permissions:
+    contents: write
+
 concurrency:
     group: devcatch-send-news
     cancel-in-progress: false
@@ -26,9 +29,16 @@ jobs:
             - run: npm run run
               env:
                   WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-                  NCP_OBJECT_STORAGE_ENDPOINT: ${{ secrets.NCP_OBJECT_STORAGE_ENDPOINT }}
-                  NCP_OBJECT_STORAGE_REGION: ${{ secrets.NCP_OBJECT_STORAGE_REGION }}
-                  NCP_ACCESS_KEY: ${{ secrets.NCP_ACCESS_KEY }}
-                  NCP_SECRET_KEY: ${{ secrets.NCP_SECRET_KEY }}
-                  NCP_BUCKET_NAME: ${{ secrets.NCP_BUCKET_NAME }}
-                  OBJECT_STORAGE_PREFIX: ${{ secrets.OBJECT_STORAGE_PREFIX }}
+
+            - name: 발송 이력 저장
+              run: |
+                  if git diff --quiet -- data/sent-articles.json; then
+                    echo "발송 이력 변경 없음"
+                    exit 0
+                  fi
+
+                  git config user.name "github-actions[bot]"
+                  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+                  git add data/sent-articles.json
+                  git commit -m "chore: 뉴스 발송 이력 업데이트 [skip ci]"
+                  git push

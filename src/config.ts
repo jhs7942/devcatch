@@ -7,19 +7,7 @@ import { feedSources } from './rss.js'
 const environmentSchema = z.object({
     WEBHOOK_URL: z.string().url('WEBHOOK_URL은 올바른 URL이어야 합니다.'),
 
-    NCP_OBJECT_STORAGE_ENDPOINT: z
-        .string()
-        .url()
-        .default('https://kr.object.ncloudstorage.com'),
-    NCP_OBJECT_STORAGE_REGION: z.string().default('kr-standard'),
-    NCP_ACCESS_KEY: z.string().min(1, 'NCP_ACCESS_KEY가 필요합니다.'),
-    NCP_SECRET_KEY: z.string().min(1, 'NCP_SECRET_KEY가 필요합니다.'),
-    NCP_BUCKET_NAME: z.string().min(1, 'NCP_BUCKET_NAME이 필요합니다.'),
-
-    OBJECT_STORAGE_PREFIX: z
-        .string()
-        .min(1)
-        .default('devcatch/sent'),
+    HISTORY_FILE_PATH: z.string().min(1).default('./data/sent-articles.json'),
 
     MAX_ARTICLES: z.coerce.number().int().min(1).max(20).default(5),
     MAX_ARTICLES_PER_SOURCE: z.coerce.number().int().min(1).max(5).default(2),
@@ -44,13 +32,8 @@ export const config = {
         url: environment.WEBHOOK_URL,
     },
 
-    objectStorage: {
-        endpoint: environment.NCP_OBJECT_STORAGE_ENDPOINT,
-        region: environment.NCP_OBJECT_STORAGE_REGION,
-        accessKey: environment.NCP_ACCESS_KEY,
-        secretKey: environment.NCP_SECRET_KEY,
-        bucketName: environment.NCP_BUCKET_NAME,
-        objectPrefix: environment.OBJECT_STORAGE_PREFIX,
+    history: {
+        filePath: environment.HISTORY_FILE_PATH,
     },
 
     recommendation: {
