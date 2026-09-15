@@ -60,6 +60,10 @@
     "1d92735c96b930d1579e8009b5cd6a7fbf977e6d20f8e699c3390559ad338128": {
       "url": "https://toss.tech/article/52999",
       "sentAt": "2026-09-09T13:46:04.874Z"
+    },
+    "7693083b1ba9a63a6d0c60fcd4b041f22a9db25f31a92d9da041ef076ebd7c87": {
+      "url": "https://toss.tech/article/gpu-native-cluster",
+      "sentAt": "2026-09-15T04:58:55.969Z"
     }
   }
 }
