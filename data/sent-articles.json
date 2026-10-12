@@ -132,6 +132,14 @@
     "7bce71165ba880d8ac3650c1dcd68951c53cbead03d7bc624bb6edfd73a91bcf": {
       "url": "https://toss.tech/article/53795",
       "sentAt": "2026-10-12T06:05:01.796Z"
+    },
+    "42faf4355acc5ebfb4287876e8c8756f86e7f454adbe32c54af3403a29016062": {
+      "url": "https://toss.tech/article/milvus-optimization-and-sizing",
+      "sentAt": "2026-10-12T19:06:16.544Z"
+    },
+    "991c059db2cd3e8422c36bd9265f555741d5bad0b4787e9cc197ad8cb3b2ee42": {
+      "url": "https://tech.kakao.com/posts/839",
+      "sentAt": "2026-10-12T19:06:16.544Z"
     }
   }
 }
