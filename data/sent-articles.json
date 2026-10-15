@@ -152,6 +152,10 @@
     "2e7f5b177740710cd92ba855d5d9351b07a24637f8a7969637767c4d1d986659": {
       "url": "https://toss.tech/article/spark-connect-on-kubernetes-2",
       "sentAt": "2026-10-14T14:32:53.382Z"
+    },
+    "9f15c37bdfdc099a091fa99e44754e1e45e4cec89a5ac741082b05ab75796ff8": {
+      "url": "https://toss.tech/article/package-management-1",
+      "sentAt": "2026-10-15T14:12:34.656Z"
     }
   }
 }
