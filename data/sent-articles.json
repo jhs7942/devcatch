@@ -160,6 +160,10 @@
     "fb81b442df2fad5ba5d26bb50a153a562e0568e9e04840fc092869043a388eb4": {
       "url": "https://toss.tech/article/package-management-2",
       "sentAt": "2026-10-16T04:37:40.568Z"
+    },
+    "a0ffe9da4bda811e6fa69571bb489672f52946bd8fe31a580ba2fa76d74d1439": {
+      "url": "https://toss.tech/article/dw-airflow-migration",
+      "sentAt": "2026-10-16T13:59:49.758Z"
     }
   }
 }
