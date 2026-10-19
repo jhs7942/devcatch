@@ -164,6 +164,10 @@
     "a0ffe9da4bda811e6fa69571bb489672f52946bd8fe31a580ba2fa76d74d1439": {
       "url": "https://toss.tech/article/dw-airflow-migration",
       "sentAt": "2026-10-16T13:59:49.758Z"
+    },
+    "c46c624fd55cad383dc85c0ef1aea4bdf8c5c433476da8c5881b6f9e77c8b3e0": {
+      "url": "https://toss.tech/article/nic-interrupt-bottleneck",
+      "sentAt": "2026-10-19T04:48:13.580Z"
     }
   }
 }
