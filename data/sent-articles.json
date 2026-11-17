@@ -300,6 +300,18 @@
     "0c9bc27a0d07f0270b847c4c972e49347b309a21ffeb67516e74cd2819fcfe1b": {
       "url": "https://d2.naver.com/helloworld/9994827",
       "sentAt": "2026-11-16T19:40:22.723Z"
+    },
+    "45976efbcb25f9b252d902fea7a2581d78eb11f6abcb893b65b7eab6e531cc17": {
+      "url": "https://toss.tech/article/training-serving-skew",
+      "sentAt": "2026-11-17T08:00:34.977Z"
+    },
+    "de350d2a8412dc4b692d0924ad80a1c12d9718b8bf4d194b05b440fd36bc2daf": {
+      "url": "https://tech.kakao.com/posts/849",
+      "sentAt": "2026-11-17T08:00:34.977Z"
+    },
+    "bb2369aa8ac3a010bb436e32df7cd65f1ac44ed8a5082546dac20dae0b9edc36": {
+      "url": "https://toss.tech/article/targeting-model-automation",
+      "sentAt": "2026-11-17T08:00:34.977Z"
     }
   }
 }
